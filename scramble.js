@@ -10,7 +10,7 @@ function getGroup(move){
   return 0;
 }
 
-// face move生成（同face2連 & 同グループ3連NG）
+// face move生成
 function randomFaceMove(last1, last2){
   let move;
   while (true){
@@ -29,13 +29,12 @@ function randomFaceMove(last1, last2){
   return move + suffix;
 }
 
-// スクランブル生成
-function generateScramble(){
+// 単一スクランブル
+function makeScramble(){
   let scramble = [];
   let last1 = null;
   let last2 = null;
 
-  // 前半: 18〜22手
   const faceCount = 18 + Math.floor(Math.random() * 5);
   for (let i = 0; i < faceCount; i++){
     const mv = randomFaceMove(last1, last2);
@@ -45,7 +44,6 @@ function generateScramble(){
     last1 = mv.replace(/['2]$/, "");
   }
 
-  // 後半: wide 0〜2手
   const wideCount = Math.floor(Math.random() * 3);
   for (let i = 0; i < wideCount; i++){
     const w = wideMoves[Math.floor(Math.random() * wideMoves.length)];
@@ -53,13 +51,10 @@ function generateScramble(){
     scramble.push(w + s);
   }
 
-  document.getElementById("scramble").textContent = scramble.join(" ");
+  return scramble.join(" ");
 }
 
-// ボタン紐づけ
+// 初期化 & 公開
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("gen").addEventListener("click", generateScramble);
+  window.makeScramble = makeScramble;
 });
-
-//　呼び出し可能関数
-window.makeScramble = generateScramble();
