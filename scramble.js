@@ -55,6 +55,4 @@ function makeScramble(){
 }
 
 // 初期化 & 公開
-document.addEventListener("DOMContentLoaded", () => {
-  window.makeScramble = makeScramble;
-});
+window.makeScramble = makeScramble;
