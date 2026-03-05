@@ -15,10 +15,5 @@ function generateManyScrambles(){
   list.innerHTML = html;
 }
 
-// DOM 準備後にボタンに紐づけ
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("gen").addEventListener("click", generateManyScrambles);
-});
-
 // 初回表示
 generateManyScrambles();
