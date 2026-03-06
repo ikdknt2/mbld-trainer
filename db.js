@@ -67,7 +67,6 @@ function saveTime(){
         solved: solved,
         attempted: attempted,
         penalty: penalty,
-        point: point,
         date: now.toISOString()
     });
 
