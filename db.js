@@ -28,9 +28,17 @@ function parseTime(str){
     return min * 60 + sec;
 }
 
+function formatTime(sec){
+
+    const m = Math.floor(sec / 60);
+    const s = (sec % 60).toFixed(2).padStart(5,"0");
+
+    return `${m}:${s}`;
+}
+
 function saveTime(){
 
-    const time = parseFloat(document.getElementById("timeInput").value);
+    const baseTime = parseTime(document.getElementById("timeInput").value);
     const solved = parseInt(document.getElementById("solvedInput").value);
     const attempted = parseInt(document.getElementById("attemptedInput").value);
 
@@ -76,7 +84,7 @@ function loadTimes(){
 
             out += `
             <div>
-            ${data[i].solved} / ${data[i].attempted} [${data[i].time}]
+            ${data[i].solved} / ${data[i].attempted} [${formatTime(data[i].time)}]
             <button onclick="showInfo(${data[i].id})">...</button>
             <button onclick="deleteTime(${data[i].id})">❌</button>
             </div>
