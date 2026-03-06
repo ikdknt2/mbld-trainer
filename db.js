@@ -125,32 +125,41 @@ function loadTimes(){
 
 function showInfo(id){
 
-    const tx = db.transaction("times","readonly");
-    const store = tx.objectStore("times");
+  const tx = db.transaction("times","readonly");
+  const store = tx.objectStore("times");
 
-    const req = store.get(id);
+  const req = store.get(id);
 
-    req.onsuccess = function(){
+  req.onsuccess = function(){
 
-        const data = req.result;
+    const data = req.result;
 
-        const attempted = data.attempted;
-        const solved = data.solved;
-        const penalties = data.penalties || 0;
+    const attempted = data.attempted;
+    const solved = data.solved;
+    const penalties = data.penalties || 0;
 
-        const point = 2 * solved - attempted;
+    const point = 2 * solved - attempted;
 
-        const finalTime = data.time + penalties * 2;
+    const finalTime = data.time + penalties * 2;
 
-        alert(
-        "Time: " + formatTime(finalTime) + "\n" +
-        "Penalties: " + penalties + "\n" +
-        "Attempted: " + attempted + "\n" +
-        "Solved: " + solved + "\n" +
-        "Point: " + point
-        );
+    let pointText;
 
-    };
+    if(point <= 1){
+      pointText = "DNF(" + point + ")";
+    }else{
+      pointText = point;
+    }
+
+    alert(
+      "Time: " + formatTime(finalTime) + "\n" +
+      "Penalties: " + penalties + "\n" +
+      "Attempted: " + attempted + "\n" +
+      "Solved: " + solved + "\n" +
+      "Point: " + pointText
+    );
+
+  };
+
 }
 
 function deleteTime(id){
