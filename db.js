@@ -12,6 +12,22 @@ request.onsuccess = function(e){
     loadTimes();
 };
 
+function parseTime(str){
+
+    if(!str) return NaN;
+
+    const parts = str.split(":");
+
+    if(parts.length === 1){
+        return parseFloat(parts[0]);
+    }
+
+    const min = parseInt(parts[0]);
+    const sec = parseFloat(parts[1]);
+
+    return min * 60 + sec;
+}
+
 function saveTime(){
 
     const time = parseFloat(document.getElementById("timeInput").value);
