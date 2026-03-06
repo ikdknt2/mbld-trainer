@@ -99,6 +99,7 @@ function loadTimes(){
             out += `
             <div>
             ${data[i].solved} / ${data[i].attempted} [${formatTime(data[i].time)}]
+            const point = 2 * data[i].solved - data[i].attempted;
             <button onclick="showInfo(${data[i].id})">...</button>
             <button onclick="deleteTime(${data[i].id})">❌</button>
             </div>
