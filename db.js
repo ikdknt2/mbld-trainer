@@ -110,28 +110,22 @@ function loadTimes(){
     };
 }
 
-function showInfo(id){
+function showInfo(time) {
+  const attempted = stats.attempted;
+  const solved = stats.solved;
+  const penalties = stats.penalties || 0;
 
-    const tx = db.transaction("times","readonly");
-    const store = tx.objectStore("times");
+  const point = 2 * solved - attempted;
+  const finalTime = time + penalties * 2;
 
-    const req = store.get(id);
-
-    req.onsuccess = function(){
-
-        const d = req.result;
-
-        const date = new Date(d.date);
-
-        const formatted =
-        date.getFullYear() + "/" +
-        String(date.getMonth()+1).padStart(2,"0") + "/" +
-        String(date.getDate()).padStart(2,"0") + " " +
-        String(date.getHours()).padStart(2,"0") + ":" +
-        String(date.getMinutes()).padStart(2,"0");
-
-        alert(`${d.point} point, ${formatted}`);
-    };
+  alert(
+    "Time: " + finalTime + "s\n" +
+    "Penalties: " + penalties + "\n" +
+    "Attempted: " + attempted + "\n" +
+    "Solved: " + solved + "\n" +
+    "Point: " + point
+  );
+}
 }
 
 function deleteTime(id){
