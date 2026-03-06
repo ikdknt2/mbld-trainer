@@ -36,53 +36,42 @@ function formatTime(sec){
     return `${m}:${s}`;
 }
 
-window.saveTime = saveTime;
-window.deleteTime = deleteTime;
-window.showInfo = showInfo;
-
 function saveTime(){
 
-    const baseTime = parseTime(document.getElementById("timeInput").value);
-    const solved = parseInt(document.getElementById("solvedInput").value);
+    const time = parseFloat(document.getElementById("timeInput").value);
     const attempted = parseInt(document.getElementById("attemptedInput").value);
-    const penalty = parseInt(document.getElementById("penaltyInput").value) || 0;
+    const solved = parseInt(document.getElementById("solvedInput").value);
+    const penalties = parseInt(document.getElementById("penaltyInput").value) || 0;
 
     if(solved > attempted){
         alert("Solved cannot exceed Attempted");
         return;
     }
 
-    if(penalty > solved){
+    if(penalties > solved){
         alert("Penalty cannot exceed Solved");
         return;
     }
-
-    const time = baseTime + penalty * 2;
-
-    const point = solved - (attempted - solved);
-
-    const now = new Date();
 
     const tx = db.transaction("times","readwrite");
     const store = tx.objectStore("times");
 
     store.add({
-        time: time,
-        solved: solved,
+        time: time,           // ← 必ず数値
         attempted: attempted,
-        penalty: penalty,
-        date: now.toISOString()
+        solved: solved,
+        penalties: penalties,
+        date: Date.now()
     });
 
     tx.oncomplete = function(){
-
+        document.getElementById("timeInput").value = "";
+        document.getElementById("attemptedInput").value = "";
+        document.getElementById("solvedInput").value = "";
+        document.getElementById("penaltyInput").value = "";
         loadTimes();
-
-        document.getElementById("timeInput").value="";
-        document.getElementById("solvedInput").value="";
-        document.getElementById("attemptedInput").value="";
-        document.getElementById("penaltyInput").value="0";
     };
+
 }
 
 function loadTimes(){
