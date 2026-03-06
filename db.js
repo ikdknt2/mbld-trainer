@@ -36,6 +36,10 @@ function formatTime(sec){
     return `${m}:${s}`;
 }
 
+window.saveTime = saveTime;
+window.deleteTime = deleteTime;
+window.showInfo = showInfo;
+
 function saveTime(){
 
     const baseTime = parseTime(document.getElementById("timeInput").value);
