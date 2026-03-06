@@ -96,10 +96,11 @@ function loadTimes(){
 
         for(let i=data.length-1;i>=0;i--){
 
+            const point = 2 * data[i].solved - data[i].attempted;
+
             out += `
             <div>
             ${data[i].solved} / ${data[i].attempted} [${formatTime(data[i].time)}]
-            const point = 2 * data[i].solved - data[i].attempted;
             <button onclick="showInfo(${data[i].id})">...</button>
             <button onclick="deleteTime(${data[i].id})">❌</button>
             </div>
@@ -109,22 +110,37 @@ function loadTimes(){
         document.getElementById("timeList").innerHTML = out;
     };
 }
+}
 
-function showInfo(time) {
-  const attempted = stats.attempted;
-  const solved = stats.solved;
-  const penalties = stats.penalties || 0;
+function showInfo(id){
 
-  const point = 2 * solved - attempted;
-  const finalTime = time + penalties * 2;
+    const tx = db.transaction("times","readonly");
+    const store = tx.objectStore("times");
 
-  alert(
-    "Time: " + finalTime + "s\n" +
-    "Penalties: " + penalties + "\n" +
-    "Attempted: " + attempted + "\n" +
-    "Solved: " + solved + "\n" +
-    "Point: " + point
-  );
+    const req = store.get(id);
+
+    req.onsuccess = function(){
+
+        const data = req.result;
+
+        const attempted = data.attempted;
+        const solved = data.solved;
+        const penalties = data.penalties || 0;
+
+        const point = 2 * solved - attempted;
+
+        const finalTime = data.time + penalties * 2;
+
+        alert(
+        "Time: " + formatTime(finalTime) + "\n" +
+        "Penalties: " + penalties + "\n" +
+        "Attempted: " + attempted + "\n" +
+        "Solved: " + solved + "\n" +
+        "Point: " + point
+        );
+
+    };
+}
 }
 
 function deleteTime(id){
