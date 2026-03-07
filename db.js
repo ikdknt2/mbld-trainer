@@ -38,7 +38,7 @@ function formatTime(sec){
 
 function saveTime(){
 
-    const time = parseFloat(document.getElementById("timeInput").value);
+    const time = parseTime(document.getElementById("timeInput").value);
     const attempted = parseInt(document.getElementById("attemptedInput").value);
     const solved = parseInt(document.getElementById("solvedInput").value);
     const penalties = parseInt(document.getElementById("penaltyInput").value) || 0;
