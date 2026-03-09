@@ -140,11 +140,14 @@ function showInfo(id){
       pointText = point;
     }
 
+    const dateText = new Date(data.date).toLocaleString();
+
     alert(
       "Time: " + formatTime(finalTime) + "\n" +
       "Penalties: " + penalties + "\n" +
       "Attempted: " + attempted + "\n" +
       "Solved: " + solved + "\n" +
+      "Date: " + dateText + "\n" +
       "Point: " + pointText
     );
 
