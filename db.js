@@ -85,6 +85,9 @@ function loadTimes(){
 
         const data = req.result;
 
+        updatePB(data);
+        updatePointPB(data);
+
         let out="";
 
         for(let i=data.length-1;i>=0;i--){
@@ -167,6 +170,35 @@ function deleteTime(id){
     store.delete(id);
 
     tx.oncomplete = loadTimes;
+}
+
+function updatePointPB(data){
+
+    if(data.length === 0){
+        document.getElementById("pbPoint").innerText = "No record";
+        return;
+    }
+
+    let best = data[0];
+
+    for(let i=1;i<data.length;i++){
+
+        const pointCurrent = 2 * data[i].solved - data[i].attempted;
+        const pointBest = 2 * best.solved - best.attempted;
+
+        if(pointCurrent > pointBest){
+            best = data[i];
+        }
+
+    }
+
+    const finalTime = best.time + (best.penalties || 0) * 2;
+    const point = 2 * best.solved - best.attempted;
+
+    document.getElementById("pbPoint").innerText =
+        point + " pt  (" +
+        best.solved + "/" + best.attempted +
+        " [" + formatTime(finalTime) + "])";
 }
 
 window.saveTime = saveTime;
