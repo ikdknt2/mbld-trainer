@@ -218,7 +218,7 @@ function updatePointPB(data){
     const point = 2 * best.solved - best.attempted;
 
     document.getElementById("pbPoint").innerText =
-        "PB(Spoint): " + point + " pt  (" +
+        "PB(Point): " + point + " pt  (" +
         best.solved + "/" + best.attempted +
         " [" + formatTime(finalTime) + "])";
 }
