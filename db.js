@@ -172,6 +172,28 @@ function deleteTime(id){
     tx.oncomplete = loadTimes;
 }
 
+function updatePB(data){
+
+    if(data.length === 0){
+        document.getElementById("pbSolved").innerText = "No record";
+        return;
+    }
+
+    let best = data[0];
+
+    for(let i=1;i<data.length;i++){
+        if(data[i].solved > best.solved){
+            best = data[i];
+        }
+    }
+
+    const finalTime = best.time + (best.penalties || 0) * 2;
+
+    document.getElementById("pbSolved").innerText =
+        best.solved + " / " + best.attempted +
+        " [" + formatTime(finalTime) + "]";
+}
+
 function updatePointPB(data){
 
     if(data.length === 0){
