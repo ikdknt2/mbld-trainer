@@ -89,6 +89,16 @@ body{
 <div id="scrambleList"></div> 
 
 </div>
+
+<div class="card">  
+<h3> Export/Import </h3>
+Export
+<button onclick="exportCSV()">CSV Export</button>
+
+Import
+<input type="file" id="csvFile" accept=".csv">
+<button onclick="importCSV()">CSV Import</button>
+
 </div>
 
 
@@ -116,6 +126,8 @@ body{
 <script src="generate.js"></script>
 <script src="copy.js"></script>
 <script src="db.js"></script>
+<script src="csvim.js"></script>
+<script src="csvex.js"></script>
 
 </body>
 </html>
