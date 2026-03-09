@@ -190,7 +190,7 @@ function updatePB(data){
     const finalTime = best.time + (best.penalties || 0) * 2;
 
     document.getElementById("pbSolved").innerText =
-        best.solved + " / " + best.attempted +
+        "PB(Solved): " + best.solved + " / " + best.attempted +
         " [" + formatTime(finalTime) + "]";
 }
 
@@ -218,7 +218,7 @@ function updatePointPB(data){
     const point = 2 * best.solved - best.attempted;
 
     document.getElementById("pbPoint").innerText =
-        point + " pt  (" +
+        "PB(Spoint): " + point + " pt  (" +
         best.solved + "/" + best.attempted +
         " [" + formatTime(finalTime) + "])";
 }
