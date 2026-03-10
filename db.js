@@ -223,6 +223,14 @@ function updatePointPB(data){
         " [" + formatTime(finalTime) + "])";
 }
 
+function isValidTimeFormat(str){
+
+    const pattern = /^(\d+:\d{2}(\.\d{1,2})?|\d+(\.\d{1,2})?)$/;
+
+    return pattern.test(str);
+
+}
+
 window.saveTime = saveTime;
 window.deleteTime = deleteTime;
 window.showInfo = showInfo;
