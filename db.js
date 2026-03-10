@@ -139,9 +139,13 @@ function loadTimes(){
 
             out += `
             <div class="timeRow">
-    
-            <div class="timeMain">
-            ${data[i].solved} / ${data[i].attempted} [${formatTime(finalTime)}]
+            
+            <div class="timeSolved">
+            ${data[i].solved} / ${data[i].attempted}
+            </div>
+            
+            <div class="timeTime">
+            [${formatTime(finalTime)}]
             </div>
             
             <div class="timePoint">
