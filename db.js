@@ -38,7 +38,23 @@ function formatTime(sec){
 
 function saveTime(){
 
-    const time = parseTime(document.getElementById("timeInput").value);
+    const timeStr = document.getElementById("timeInput").value;
+
+    // Time形式チェック
+    const pattern = /^(\d+(\.\d{1,2})?|\d+:[0-5]\d(\.\d{1,2})?)$/;
+
+    if(!pattern.test(timeStr)){
+        alert("Time must be SS, SS.ss, M:SS or M:SS.ss (seconds 00-59)");
+        return;
+    }
+
+    const time = parseTime(timeStr);
+
+    if(isNaN(time)){
+        alert("Invalid time");
+        return;
+    }
+
     const attempted = parseInt(document.getElementById("attemptedInput").value);
     const solved = parseInt(document.getElementById("solvedInput").value);
     const penalties = parseInt(document.getElementById("penaltyInput").value) || 0;
@@ -57,7 +73,7 @@ function saveTime(){
     const store = tx.objectStore("times");
 
     store.add({
-        time: time,           // ← 必ず数値
+        time: time,
         attempted: attempted,
         solved: solved,
         penalties: penalties,
