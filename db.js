@@ -140,19 +140,19 @@ function loadTimes(){
             out += `
             <div class="timeRow">
             
-            <div class="timeSolved">
-            ${data[i].solved} / ${data[i].attempted}
+            <div class="colSolved">
+            ${data[i].solved}/${data[i].attempted}
             </div>
             
-            <div class="timeTime">
-            [${formatTime(finalTime)}]
+            <div class="colTime">
+            ${formatTime(finalTime)}
             </div>
             
-            <div class="timePoint">
+            <div class="colPoint">
             ${pointText}
             </div>
             
-            <div class="timeButtons">
+            <div class="colButtons">
             <button onclick="showInfo(${data[i].id})">...</button>
             <button onclick="deleteTime(${data[i].id})">❌</button>
             </div>
