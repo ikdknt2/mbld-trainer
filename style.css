@@ -55,3 +55,26 @@ button{
 button:hover{
   background:#2563eb;
 }
+
+.timeRow{
+display:flex;
+align-items:center;
+gap:10px;
+padding:4px 0;
+}
+
+.timeMain{
+flex:1;
+}
+
+.timePoint{
+font-weight:bold;
+color:#0088cc;
+min-width:60px;
+text-align:right;
+}
+
+.timeButtons{
+display:flex;
+gap:5px;
+}
