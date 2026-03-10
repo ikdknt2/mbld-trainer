@@ -101,12 +101,30 @@ function loadTimes(){
 
         const data = req.result;
 
+        const mode = document.getElementById("sortMode").value;
+
+        if(mode === "time"){
+            data.sort((a,b)=>(a.time+(a.penalties||0)*2)-(b.time+(b.penalties||0)*2));
+        }
+
+        if(mode === "solved"){
+            data.sort((a,b)=>b.solved-a.solved);
+        }
+
+        if(mode === "point"){
+            data.sort((a,b)=>(2*b.solved-b.attempted)-(2*a.solved-a.attempted));
+        }
+
+        if(mode === "date"){
+            data.sort((a,b)=>b.date-a.date);
+        }
+
         updatePB(data);
         updatePointPB(data);
 
         let out="";
 
-        for(let i=data.length-1;i>=0;i--){
+        for(let i=0;i<data.length;i++){
 
             const point = 2 * data[i].solved - data[i].attempted;
 
@@ -129,6 +147,7 @@ function loadTimes(){
         }
 
         document.getElementById("timeList").innerHTML = out;
+
     };
 }
 
