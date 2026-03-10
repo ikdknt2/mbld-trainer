@@ -138,10 +138,21 @@ function loadTimes(){
             const finalTime = data[i].time + (data[i].penalties || 0) * 2;
 
             out += `
-            <div>
+            <div class="timeRow">
+    
+            <div class="timeMain">
             ${data[i].solved} / ${data[i].attempted} [${formatTime(finalTime)}]
+            </div>
+            
+            <div class="timePoint">
+            ${pointText}
+            </div>
+            
+            <div class="timeButtons">
             <button onclick="showInfo(${data[i].id})">...</button>
             <button onclick="deleteTime(${data[i].id})">❌</button>
+            </div>
+            
             </div>
             `;
         }
