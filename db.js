@@ -140,6 +140,10 @@ function loadTimes(){
             out += `
             <div class="timeRow">
             
+            <div class="colIndex">
+            ${data[i].id}
+            </div>
+            
             <div class="colSolved">
             ${data[i].solved}/${data[i].attempted}
             </div>
