@@ -72,7 +72,7 @@ margin-bottom:5px;
 
 .colSolved{
 width:70px;
-text-align:right;
+text-align:center;
 }
 
 .colTime{
@@ -90,4 +90,10 @@ color:#0088cc;
 margin-left:auto;
 display:flex;
 gap:5px;
+}
+
+.colIndex{
+width:30px;
+text-align:right;
+color:#666;
 }
