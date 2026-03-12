@@ -274,6 +274,19 @@ function updatePointPB(data){
         " [" + formatTime(finalTime) + "])";
 }
 
+function updateTotalSolved(data){
+
+    let totalSolved = 0;
+
+    data.forEach(t=>{
+        totalSolved += t.attempted;
+    });
+
+    document.getElementById("totalSolves").textContent =
+        `You've solved ${totalSolved} cubes so far!`
+
+}
+
 function isValidTimeFormat(str){
 
     const pattern = /^(\d+:\d{2}(\.\d{1,2})?|\d+(\.\d{1,2})?)$/;
