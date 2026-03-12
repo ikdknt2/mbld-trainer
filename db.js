@@ -127,14 +127,13 @@ function loadTimes(){
         for(let i=0;i<data.length;i++){
 
             const point = 2 * data[i].solved - data[i].attempted;
-
             let pointText;
-            if(point <= 1){
-                pointText = "DNF(" + point + ")";
+            if(point < 0 || solved === 1){
+                pointText = '<span class="dnf">DNF(' + point + ')</span>';
             }else{
                 pointText = point;
             }
-
+            
             const finalTime = data[i].time + (data[i].penalties || 0) * 2;
 
             out += `
