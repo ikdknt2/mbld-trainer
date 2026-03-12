@@ -242,6 +242,7 @@ function updatePB(data){
     document.getElementById("pbSolved").innerText =
         "PB(Solved): " + best.solved + " / " + best.attempted +
         " [" + formatTime(finalTime) + "]";
+    document.getElementById("totalSolves").textContent = data.length;
 }
 
 function updatePointPB(data){
