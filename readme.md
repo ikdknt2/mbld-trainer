@@ -1,4 +1,4 @@
-```markdown
+
 # MBLD Trainer
 
 A simple browser-based training log for **3x3 Multi-Blind (MBLD)**.  
@@ -32,19 +32,13 @@ Data is stored locally in your browser using **IndexedDB**, so no account or ser
 
 Score is calculated using the official Multi-Blind formula:
 
-```
 
 score = solved − unsolved
 
-```
-
 Since:
-
-```
 
 unsolved = attempted − solved
 
-```
 
 the implementation uses:
 
