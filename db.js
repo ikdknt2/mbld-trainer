@@ -279,7 +279,7 @@ function updateTotalSolved(data){
     let totalSolved = 0;
 
     data.forEach(t=>{
-        totalSolved += t.attempted;
+        totalSolved += t.solved;
     });
 
     document.getElementById("totalSolves").textContent =
