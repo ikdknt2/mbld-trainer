@@ -121,6 +121,7 @@ function loadTimes(){
 
         updatePB(data);
         updatePointPB(data);
+        updateTotalSolved(data):
 
         let out="";
 
