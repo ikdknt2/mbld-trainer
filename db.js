@@ -128,7 +128,7 @@ function loadTimes(){
 
             const point = 2 * data[i].solved - data[i].attempted;
             let pointText;
-            if(point < 0 || solved === 1){
+            if(point < 0 || data[i].solved === 1){
                 pointText = '<span class="dnf">DNF(' + point + ')</span>';
             }else{
                 pointText = point;
