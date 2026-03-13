@@ -1,5 +1,9 @@
 function importCSV(){
 
+    if(!confirm("Importing will delete all existing data. Continue?")){
+        return;
+    }
+
     const fileInput = document.getElementById("csvFile");
 
     if(fileInput.files.length === 0){
@@ -8,19 +12,20 @@ function importCSV(){
     }
 
     const file = fileInput.files[0];
-
     const reader = new FileReader();
 
     reader.onload = function(e){
 
         const text = e.target.result;
-
         const lines = text.trim().split("\n");
 
-        lines.shift(); // ヘッダー削除
+        lines.shift(); // header削除
 
         const tx = db.transaction("times","readwrite");
         const store = tx.objectStore("times");
+
+        // ここで全部削除
+        store.clear();
 
         lines.forEach(line => {
 
@@ -52,6 +57,5 @@ function importCSV(){
     };
 
     reader.readAsText(file);
-}
 
-window.importCSV = importCSV;
+}
